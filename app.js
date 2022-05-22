@@ -20,6 +20,16 @@ app.use(orderRouter);
 app.use(productRouter);
 app.use(cartRouter);
 
+app.get('/', (req, res) =>;
+  pool.query('select * from users', (err, row) => {
+    if(err) {
+      console.error(err);
+    } else {
+      console.log(row);
+    }
+  });
+});
+
 
 const PORT = process.env.PORT || 5000;
 
