@@ -1,6 +1,5 @@
 const express = require("express");
 const bodyParser = require('body-parser');
-const mysql = require("mysql2");
 const jwt = require('jsonwebtoken');
 const userRouter = require('./router/userRouter');
 const orderRouter = require('./router/orderRouter');
@@ -8,13 +7,6 @@ const productRouter = require('./router/productRouter');
 const cartRouter = require('./router/cartRouter');
 
 const app = express();
-
-const pool  = mysql.createPool({
-    connectionLimit : 10,
-    host            : 'localhost',
-    user            : 'root',
-    database        : 'ordering_simplified'
-});
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
