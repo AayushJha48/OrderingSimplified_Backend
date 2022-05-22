@@ -14,12 +14,12 @@ router.get("/logout", authentication.logOut);
 //   authentication.updatePassword
 // );
 
-router.get(
-  "/",
-  authentication.protect,
-  authentication.restrictTo("admin"),
-  getUsers
-);
+// router.get(
+//   "/",
+//   authentication.protect,
+//   // authentication.restrictTo("admin"),
+//   getUsers
+// );
 
 router.get("/me", authentication.protect, me);
 
