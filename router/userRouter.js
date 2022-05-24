@@ -6,7 +6,7 @@ const { getUsers, me } = require("../controller/userController");
 router.post("/signup", authentication.signUp);
 router.post("/signin", authentication.signIn);
 router.get("/logout", authentication.logOut);
-router.get('/auth', authentication.protect);
+
 
 // router.patch(
 //   "/update_password",
@@ -15,12 +15,12 @@ router.get('/auth', authentication.protect);
 //   authentication.updatePassword
 // );
 
-// router.get(
-//   "/",
-//   authentication.protect,
-//   // authentication.restrictTo("admin"),
-//   getUsers
-// );
+router.get(
+  "/",
+  authentication.protect,
+  // authentication.restrictTo("admin"),
+  getUsers
+);
 
 router.get("/me", authentication.protect, me);
 
