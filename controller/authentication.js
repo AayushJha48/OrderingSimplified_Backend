@@ -82,10 +82,8 @@ exports.protect = (req, res, next) => {
       })
     }
 
-    console.log(decoded);
-    return res.json({
-      msg: decoded
-    })
+    req.currentUser = decoded;
+    next();
   })
 };
 
@@ -110,6 +108,7 @@ exports.restrictTo = (...roles) => {
 
 exports.logOut = (req, res, next) => {
   res.clearCookie('auth_token');
+  console.log(req.cookies);
   res.json({
     msg: 'Logged Out'
   });
