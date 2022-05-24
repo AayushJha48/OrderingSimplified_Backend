@@ -45,9 +45,6 @@ exports.signIn = (req, res, next) => {
      })
    }
 
-   console.log(user);
-   console.log(fields);
-
    if(user[0].password !== req.body.password) {
      return res.json({
        err: "Password incorrect"
@@ -55,13 +52,13 @@ exports.signIn = (req, res, next) => {
    } else {
 
       jwt.sign({ email: user[0].email, id: user[0].id }, "This is my private key", function(err, token) {
-        console.log(token);
         if(err) {
           console.log(err);
           return res.json({
             err: "Unable to loggin"
           })
         } else {
+          res.cookie('auth_token', token);
           return res.json({
             token
           })
@@ -71,10 +68,25 @@ exports.signIn = (req, res, next) => {
 }) };
 
 exports.protect = (req, res, next) => {
-  // Middleware to protect each route
-  res.json({
-    msg: "",
-  });
+  if(!req.cookies.auth_token) {
+    return res.json({
+      msg: "You are not authorized"
+    })
+  }
+
+  jwt.verify(req.cookies.auth_token, "This is my private key", function (err, decoded) {
+    if(err) {
+      console.log(err);
+      return res.json({
+        msg: "Unable to authenticate"
+      })
+    }
+
+    console.log(decoded);
+    return res.json({
+      msg: decoded
+    })
+  })
 };
 
 // TODO: Update this function
@@ -90,14 +102,15 @@ exports.restrictTo = (...roles) => {
   };
 };
 
-exports.checkUser = (req, res, next) => {
-  res.json({
-    msg: "Check user",
-  });
-};
+// exports.checkUser = (req, res, next) => {
+//   res.json({
+//     msg: "Check user",
+//   });
+// };
 
 exports.logOut = (req, res, next) => {
+  res.clearCookie('auth_token');
   res.json({
-    msg: "Logout user",
+    msg: 'Logged Out'
   });
 };
