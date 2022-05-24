@@ -1,4 +1,9 @@
+const jwt = require('jsonwebtoken');
+
 exports.signUp = (req, res, next) => {
+
+  console.log(req.body);
+
   res.json({
     msg: "SignUp user",
   });
