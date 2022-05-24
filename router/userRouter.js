@@ -7,6 +7,7 @@ router.post("/signup", authentication.signUp);
 router.post("/signin", authentication.signIn);
 router.get("/logout", authentication.logOut);
 
+
 // router.patch(
 //   "/update_password",
 //   authentication.protect,
@@ -14,12 +15,12 @@ router.get("/logout", authentication.logOut);
 //   authentication.updatePassword
 // );
 
-// router.get(
-//   "/",
-//   authentication.protect,
-//   // authentication.restrictTo("admin"),
-//   getUsers
-// );
+router.get(
+  "/",
+  authentication.protect,
+  // authentication.restrictTo("admin"),
+  getUsers
+);
 
 router.get("/me", authentication.protect, me);
 

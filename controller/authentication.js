@@ -81,7 +81,6 @@ exports.protect = (req, res, next) => {
         msg: "Unable to authenticate"
       })
     }
-
     req.currentUser = decoded;
     next();
   })
