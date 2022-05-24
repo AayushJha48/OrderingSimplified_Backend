@@ -14,10 +14,10 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 
 // Routes
-app.use(userRouter);
-app.use(productRouter);
-app.use(orderRouter);
-app.use(cartRouter);
+app.use('/api/users', userRouter);
+app.use('/api/products'productRouter);
+app.use('/api/orders', orderRouter);
+app.use('/api/cart', cartRouter);
 
 
 const PORT = process.env.PORT || 5000;
