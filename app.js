@@ -15,7 +15,7 @@ app.use(cookieParser());
 
 // Routes
 app.use('/api/users', userRouter);
-app.use('/api/products', productRouter);
+app.use('/api/products',productRouter);
 app.use('/api/orders', orderRouter);
 app.use('/api/cart', cartRouter);
 
