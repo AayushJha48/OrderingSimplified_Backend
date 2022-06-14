@@ -11,7 +11,7 @@ exports.addItem = (req, res, next) => {
     (err, rows) => {
       if (err) {
         console.log(err);
-        return res.json({ msg: 'Error in adding card item' });
+        return res.json({ err: 'Error in adding card item' });
       }
 
       return res.json({
